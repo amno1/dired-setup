@@ -1,0 +1,7 @@
+* About
+
+My personal setup for Dired file manager in GNU Emacs.
+
+Nothing special, just packages and configuration as I like it for my personal use.
+
+Refactored out of my setup for more modularized management.
