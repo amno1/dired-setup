@@ -220,7 +220,6 @@
          (size (du-size files)))
     (message "Total size of dirtree %s: %s" default-directory size)))
 
-
 (defun dired-find-dups ()
   (unless (or (eq major-mode 'dired-mode) (eq major-mode 'wdired-mode))
               (error "Not in dired or wdired mode."))
@@ -387,75 +386,76 @@ Type \\`SPC' or \\`y' to overwrite file `%s',
   (dolist (ext (list
                 (list (openwith-make-extension-regexp
                        '("pdf"))
-                             "firefox-developer-edition"
-                             '(file))
+                      "firefox-developer-edition"
+                      '(file))
                 (list (openwith-make-extension-regexp
-                              '("xbm" "pbm" "pgm" "ppm" "pnm"
-                                "png" "gif" "bmp" "tif" "jpeg" "jpg"))
-                             "feh"
-                             '(file))
-                       (list (openwith-make-extension-regexp
-                              '("doc" "xls" "ppt" "odt" "ods" "odg" "odp" "rtf"))
-                             "libreoffice"
-                             '(file))
-                       (list (openwith-make-extension-regexp
-                              '("\\.lyx"))
-                             "lyx"
-                             '(file))
-                       (list (openwith-make-extension-regexp
-                              '("chm"))
-                             "kchmviewer"
-                             '(file))
-                       (list (openwith-make-extension-regexp
-                              '("ps" "ps.gz" "dvi" "epub" "djv" "djvu" "mobi" "azw3"))
-                             "okular"
-                             '(file))))
-      (add-to-list 'openwith-associations ext)))
-              
-(dolist (ext  (list (list (openwith-make-extension-regexp
-                           '("flac" "mpg" "mpeg" "mp3" "mp4"
-                             "avi" "wmv" "wav" "mov" "flv" "ts" "m4b"
-                             "ogm" "ogg" "mkv" "webm" "m4v" "m4a"))
-                          "mpv"
-                          '(file))
-                    (list (openwith-make-extension-regexp
-                           '("html" "htm" "pdf" "xml"))
-                          (getenv "BROWSER")
-                          '(file))))
+                       '("xbm" "pbm" "pgm" "ppm" "pnm"
+                         "png" "gif" "bmp" "tif" "jpeg" "jpg"))
+                      "feh"
+                      '(file))
+                (list (openwith-make-extension-regexp
+                       '("doc" "xls" "ppt" "odt" "ods" "odg" "odp" "rtf"))
+                      "libreoffice"
+                      '(file))
+                (list (openwith-make-extension-regexp
+                       '("\\.lyx"))
+                      "lyx"
+                      '(file))
+                (list (openwith-make-extension-regexp
+                       '("chm"))
+                      "kchmviewer"
+                      '(file))
+                (list (openwith-make-extension-regexp
+                       '("ps" "ps.gz" "dvi" "epub" "djv" "djvu" "mobi" "azw3"))
+                      "okular"
+                      '(file))))
+    (add-to-list 'openwith-associations ext)))
+
+(dolist (ext  (list
+               (list (openwith-make-extension-regexp
+                      '("flac" "mpg" "mpeg" "mp3" "mp4"
+                        "avi" "wmv" "wav" "mov" "flv" "ts" "m4b"
+                        "ogm" "ogg" "mkv" "webm" "m4v" "m4a"))
+                     "mpv"
+                     '(file))
+               (list (openwith-make-extension-regexp
+                      '("html" "htm" "pdf" "xml"))
+                     (getenv "BROWSER")
+                     '(file))))
   (add-to-list 'openwith-associations ext))
 
 (define-keymap :keymap dired-mode-map
-    "C-x S-f"          'dired-open-current-as-sudo
-    "r"                'dired-do-rename
-    "C-w"              'dired-copy-paste-do-cut
-    "C-y"              'dired-copy-paste-do-paste
-    "M-w"              'dired-copy-paste-do-copy
-    "C-S-r"            'wdired-change-to-wdired-mode
-    "C-r C-r"          'tda/rsync
-    "C-r C-z"          'tda/zip
-    "C-r C-u"          'tda/unzip
-    "C-r C-a"          'tda/rsync-multiple-mark-file
-    "C-r C-e"          'tda/rsync-multiple-empty-list
-    "C-r C-d"          'tda/rsync-multiple-remove-item
-    "C-r C-v"          'tda/rsync-multiple
-    "C-r C-s"          'tda/get-files-size
-    "C-r C-q"          'tda/download-to-current-dir
-    "C-x C-j"          'dired-jump
-    "C-x 4 C-j"        'dired-jump-other-window
-    "S-<return>"       'dired-openwith
-    "n"                'scroll-up-line
-    "p"                'scroll-down-line
-    "M-m"              'dired-mark-backward
-    "M-<"              'dired-goto-first
-    "M->"              'dired-goto-last
-    "M-<return>"       'my-run
-    "C-S-f"            'dired-narrow
-    "P"                'peep-dired
-    "<f1>"             'term-toggle-term
-    "TAB"              'dired-subtree-toggle
-    "f"                'dired-subtree-fold-all
-    "z"                'dired-get-size
-    "e"                'dired-subtree-expand-all)
+  "C-x S-f"          'dired-open-current-as-sudo
+  "r"                'dired-do-rename
+  "C-w"              'dired-copy-paste-do-cut
+  "C-y"              'dired-copy-paste-do-paste
+  "M-w"              'dired-copy-paste-do-copy
+  "C-S-r"            'wdired-change-to-wdired-mode
+  "C-r C-r"          'tda/rsync
+  "C-r C-z"          'tda/zip
+  "C-r C-u"          'tda/unzip
+  "C-r C-a"          'tda/rsync-multiple-mark-file
+  "C-r C-e"          'tda/rsync-multiple-empty-list
+  "C-r C-d"          'tda/rsync-multiple-remove-item
+  "C-r C-v"          'tda/rsync-multiple
+  "C-r C-s"          'tda/get-files-size
+  "C-r C-q"          'tda/download-to-current-dir
+  "C-x C-j"          'dired-jump
+  "C-x 4 C-j"        'dired-jump-other-window
+  "S-<return>"       'dired-openwith
+  "n"                'scroll-up-line
+  "p"                'scroll-down-line
+  "M-m"              'dired-mark-backward
+  "M-<"              'dired-goto-first
+  "M->"              'dired-goto-last
+  "M-<return>"       'my-run
+  "C-S-f"            'dired-narrow
+  "P"                'peep-dired
+  "<f1>"             'term-toggle-term
+  "TAB"              'dired-subtree-toggle
+  "f"                'dired-subtree-fold-all
+  "z"                'dired-get-size
+  "e"                'dired-subtree-expand-all)
 
 ;;;###autoload
 (define-minor-mode dired-setup-mode
@@ -488,6 +488,7 @@ Type \\`SPC' or \\`y' to overwrite file `%s',
         wdired-use-dired-vertical-movement t
         wdired-allow-to-change-permissions t
         dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
+
   (add-hook #'dired-mode-hook (lambda () (dired-setup-mode +1))))
 
 (provide 'dired-setup)
