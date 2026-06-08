@@ -56,7 +56,7 @@
 File pattern is a regular expression describing the files to
 associate with a program. The program arguments are a list of
 strings and symbols and are passed to the program on invocation,
-where the symbol 'file' is replaced by the file to be opened."
+where the symbol `file' is replaced by the file to be opened."
   :group 'openwith
   :type '(repeat (list (regexp :tag "Files")
                        (string :tag "Program")
@@ -86,12 +86,14 @@ string."
       (mapconcat 'shell-quote-argument arglist " ")
       " >/dev/null"))))
 
-(defun openwith-open-windows (file)
-  "Run external command COMMAND, in such a way that it is
+(eval-when-compile
+  (defun openwith-open-windows (file)
+    "Run external command COMMAND, in such a way that it is
   disowned from the parent Emacs process.  If Emacs dies, the
   process spawned here lives on.  ARGLIST is a list of strings,
   each an argument to COMMAND."
-  (w32-shell-execute "open" file))
+    (when (eq system-type 'windows-nt)
+      (w32-shell-execute "open" file))))
 
 ;;;###autoload
 (defun dired-openwith ()

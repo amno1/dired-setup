@@ -420,7 +420,7 @@ Type \\`SPC' or \\`y' to overwrite file `%s',
                      '(file))
                (list (openwith-make-extension-regexp
                       '("html" "htm" "pdf" "xml"))
-                     (getenv "BROWSER")
+                     "firefox-developer-edition"
                      '(file))))
   (add-to-list 'openwith-associations ext))
 
@@ -489,7 +489,7 @@ Type \\`SPC' or \\`y' to overwrite file `%s',
         wdired-allow-to-change-permissions t
         dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
 
-  (add-hook #'dired-mode-hook (lambda () (dired-setup-mode +1))))
+  (add-hook 'dired-mode-hook (lambda () (dired-setup-mode +1))))
 
 (provide 'dired-setup)
 ;;; dired-setup.el ends here
